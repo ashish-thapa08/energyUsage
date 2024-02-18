@@ -28,14 +28,14 @@ export default function Nav() {
                   </span>
                 </NavLink>
               </li>
-              <li className="hover:bg-gray-700 flex items-start w-full">
+              {/* <li className="hover:bg-gray-700 flex items-start w-full">
                 <NavLink to='/userDash' activeClassName="bg-gray-700" className="block pt-2 pl-4 pb-2">
                   <span>
                     <BsPersonFill className="inline-block align-middle mr-2" size="1.5em"/>
                     My Dashboard
                   </span>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="text-white p-4">

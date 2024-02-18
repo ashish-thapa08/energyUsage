@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useFormik} from "formik"
 import * as yup from "yup"
 import { Register } from '../../api/Control'
@@ -18,6 +18,7 @@ email: yup
     .min(8, "Password is too short - should be 8 chars minimum!!!"),
 })
 export default function Home() {
+  let [sucessMsg,setsucessMsg] = useState('')
   const formik = useFormik({
     initialValues:{
       fullname:"",
@@ -25,12 +26,19 @@ export default function Home() {
       password:""
     },
     validationSchema:validate,
-    onSubmit : async(values,{setSubmitting})=>{
+    onSubmit : async(values,{setSubmitting, setErrors,resetForm })=>{
       let returnData = await Register(values);
-      console.log("Return Data:", returnData);
-      if(returnData){
-        setSubmitting(false);
+      console.log("Return Data:", returnData.data.errMsg);
+      if(returnData.data.errMsg){
+        setErrors({ email: returnData.data.errMsg });
+        setsucessMsg('')
       }
+      setsucessMsg(returnData.data.msg)
+      setSubmitting(false);
+      setTimeout(() => {
+        resetForm();
+        setsucessMsg(''); 
+    }, 4000);
     }
   })
   return (
@@ -79,6 +87,12 @@ export default function Home() {
           <div className="flex">
             <button type="submit" className="bg-gray-800 text-white px-4 py-2 w-full rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-600">Register</button>
           </div>
+          {sucessMsg && (
+                            <div className="mt-4 mx-auto max-w-md bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                                <strong className="font-bold">Success!</strong>
+                                <span className="block sm:inline">Your registration was successful.</span>
+                            </div>
+                        )}
         </form>
       </div>
     </>

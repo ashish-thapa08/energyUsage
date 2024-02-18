@@ -18,11 +18,19 @@ export default function  Login() {
       password:""
     },
     validationSchema:validate,
-    onSubmit : async(values,{setSubmitting})=>{
+    onSubmit : async(values,{setSubmitting,setErrors})=>{
       let returnData = await Signin(values);
       console.log("Return Data:", returnData);
-      if(returnData){
+      if(returnData.data.errMsg1){
+        setErrors({ email: returnData.data.errMsg1 });
+      }
+      else if(returnData.data.errMsg){
+        setErrors({ password: returnData.data.errMsg });
+      }
+      else{
+        localStorage.setItem('userData',values.email.split('@')[0])
         setSubmitting(false);
+        alert(returnData.data.msg)
       }
     }
   })
