@@ -2,6 +2,7 @@ import React from 'react'
 import {useFormik} from "formik"
 import * as yup from "yup"
 import { Signin } from '../../api/Control'
+import { Link,useNavigate } from 'react-router-dom'
 const validate = yup.object().shape({
 email: yup
   .string()
@@ -12,6 +13,7 @@ email: yup
     .required("Password Required!!!")
 })
 export default function  Login() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues:{
       email:"",
@@ -30,7 +32,8 @@ export default function  Login() {
       else{
         localStorage.setItem('userData',values.email.split('@')[0])
         setSubmitting(false);
-        alert(returnData.data.msg)
+        navigate('/userDash')
+        //alert(returnData.data.msg)
       }
     }
   })
@@ -66,7 +69,7 @@ export default function  Login() {
           </div>
           <div className="flex items-center">
             <button type="submit" className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-600">Login</button>
-            <a href="#" className="text-gray-600 hover:underline ml-4">Forgot Password?</a>
+            <Link to='/forgot-password' className="text-gray-600 hover:underline ml-4">Forgot Password?</Link>
           </div>
         </form>
       </div>

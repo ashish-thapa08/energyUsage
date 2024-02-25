@@ -18,3 +18,19 @@ export const Signin = async(data) => {
     throw err;
   }
 };
+export const Forgotpw = async(data)=>{
+  try {
+    const response = await Axios.post(url + "forgotPassword", data, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const Recoverpw = async(data)=>{
+  try {
+    const response = await Axios.put(url + "forgotPassword", data, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
