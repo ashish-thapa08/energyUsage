@@ -1,6 +1,6 @@
 require('../connection/conn')
 const express = require("express");
-userModel = require("../Model/User")
+const userModel = require("../Model/User")
 const bcrypt = require("bcrypt");
 const router = express.Router();
 router.post("/",async(req,resp)=>{

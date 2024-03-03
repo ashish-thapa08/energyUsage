@@ -30,7 +30,8 @@ export default function  Login() {
         setErrors({ password: returnData.data.errMsg });
       }
       else{
-        localStorage.setItem('userData',values.email.split('@')[0])
+        //localStorage.setItem('userData',values.email.split('@')[0])
+        localStorage.setItem('userData',values.email)
         setSubmitting(false);
         navigate('/userDash')
         //alert(returnData.data.msg)

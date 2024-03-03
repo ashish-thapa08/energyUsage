@@ -8,6 +8,8 @@ const connection = require("./connection/conn");
 const userRegistration = require('./auth/userRegistration')
 const userLogin = require('./auth/userLogin')
 const forgotpwEmailvalidation = require('./auth/forgotpwEmailvalidation')
+const communityPost = require('./posts/addPost');
+const savePosts = require("./posts/savePost");
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -22,6 +24,12 @@ app.get("/", (req, resp) => {
 app.use("/user-registration", userRegistration);
 app.use("/user-login", userLogin);
 app.use("/forgotPassword",forgotpwEmailvalidation);
+app.use("/createPost",communityPost);
+app.use("/getPost",communityPost);
+app.use("/savePost",savePosts)
+app.use("/removePost",savePosts)
+app.use("/updatePost",savePosts)
+app.use("/savedposts",savePosts)
 app.listen(port, () => {
     console.log(`port running on ${port}`);
   });

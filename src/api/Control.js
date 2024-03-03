@@ -34,3 +34,81 @@ export const Recoverpw = async(data)=>{
     throw err;
   }
 }
+export const Posts = async (data) => {
+  if (typeof localStorage !== 'undefined') {
+    let user = localStorage.getItem('userData');
+    try {
+      console.log( user);
+      const response = await Axios.post(url + `createPost/${user}`, data, { withCredentials: true });
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  } else {
+    console.error('localStorage is not available in this environment');
+    // Handle the absence of localStorage
+  }
+};
+export const Getposts = async(data)=>{
+  try {
+    const response = await Axios.get(url + "getPost", data, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const Saveposts = async(id,user)=>{
+  try {
+    console.log(id,user)
+    const response = await Axios.post(url + "savePost", {id:id,user:user}, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const Removeposts = async(id)=>{
+  try {
+    console.log(id)
+    const response = await Axios.delete(url + `removePost/${id}`, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const Updateposts = async(id,title,device,description)=>{
+  try {
+    console.log(id)
+    const response = await Axios.put(url + `updatePost/${id}`,{title:title,device:device,description:description}, { withCredentials: true });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+export const fetchSavedPosts = async (userId) => {
+  try {
+      // fetch saved posts data for the current user
+      const response = await Axios.get(url+`savedposts/${userId}`);
+      return response.data
+  } catch (error) {
+      console.error('Error fetching saved posts:', error);
+      throw error;
+  }
+};
+
+export const checkIfPostIsSaved = async (postId, userId) => {
+  try {
+    // Fetch saved posts data for the current user
+    const savedPosts = await fetchSavedPosts(userId);
+    console.log(savedPosts)
+    // Check if the postId exists in the saved posts data
+    const isPostSaved = savedPosts.some(post => post.postId === postId);
+    const myPostSaved = savedPosts.filter(post => post.postId === postId);
+    console.log(myPostSaved);
+    return (isPostSaved,myPostSaved);
+  } catch (error) {
+    console.error('Error checking if post is saved:', error);
+    return false; 
+  }
+};
+
+

@@ -37,7 +37,7 @@ export default function Recoverpassword() {
         }
       })
       useEffect(()=>{
-        user?navigate('/login'):!emailValidation&&navigate('/forgot-password')
+        user?navigate('/userDash'):!emailValidation&&navigate('/forgot-password')
       })
   return (
    <>
