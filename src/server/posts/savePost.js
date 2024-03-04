@@ -46,7 +46,7 @@ router.put("/:id",async(req,resp)=>{
     try {
         const postId = req.params.id;
         const { title, device,description } = req.body; // Assuming you want to update title and description
-
+        console.log(device)
         // Find the post by ID and update it
         const updatedPost = await Posts.findByIdAndUpdate(postId, { title,device,description }, { new: true });
 

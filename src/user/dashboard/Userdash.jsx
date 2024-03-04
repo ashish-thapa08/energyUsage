@@ -95,7 +95,6 @@ export default function Userdash() {
   {profile&&<Profile/>}
   </div>
 </div>
-
     </div>
     </>
   )

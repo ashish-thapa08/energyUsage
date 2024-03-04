@@ -23,7 +23,7 @@ export default function Updatepost({id,title,device,description,closeModal}) {
         },
         validationSchema:validate,
         onSubmit : async(values,{setSubmitting, setErrors,resetForm })=>{
-         let response = await Updateposts(id,values.title,values.device,values.description)
+         let response = await Updateposts(id,values.title,values.option,values.description)
         if(response.msg){
             setSubmitting(false)
             alert('Post Updated!!!')
