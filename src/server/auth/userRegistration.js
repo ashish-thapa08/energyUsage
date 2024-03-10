@@ -28,5 +28,8 @@ router.post("/", async (req, resp) => {
       resp.status(500).send({ errMsg: "Internal Server Error" });
     }
   });
-  
+  router.get("/:user",async(req,resp)=>{
+    const userExist = await userModel.findOne({ email: req.params.user });
+    userExist&&resp.send({msg:userExist})
+  })
 module.exports=router;

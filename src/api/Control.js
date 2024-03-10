@@ -8,7 +8,16 @@ export const Register = async (data) => {
     throw err;
   }
 };
-
+export const userProfile = async (user) => {
+  try {
+      // fetch saved posts data for the current user
+      const response = await Axios.get(url+`profile/${user}`);
+      return response.data
+  } catch (error) {
+      console.error('Error fetching saved posts:', error);
+      throw error;
+  }
+};
 export const Signin = async(data) => {
   //return(data);
   try {
@@ -110,5 +119,38 @@ export const checkIfPostIsSaved = async (postId, userId) => {
     return false; 
   }
 };
-
-
+export const Comments = async(comment,user,postId)=>{
+  try {
+    //console.log(comment)
+    const response = await Axios.post(url + "userComment", {comment:comment,user:user,postId:postId}, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const getComments = async()=>{
+  try {
+    //console.log(comment)
+    const response = await Axios.get(url + "getuserComment", { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const editComments = async(comment,id)=>{
+  try {
+    console.log(comment,id)
+    const response = await Axios.put(url + "editComment", {comment:comment,id:id}, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+export const deleteComments = async(id)=>{
+  try {
+    const response = await Axios.delete(url + `editComment/${id}`, { withCredentials: true });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
