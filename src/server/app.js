@@ -9,6 +9,7 @@ const userRegistration = require('./auth/userRegistration')
 const userLogin = require('./auth/userLogin')
 const forgotpwEmailvalidation = require('./auth/forgotpwEmailvalidation')
 const communityPost = require('./posts/addPost');
+const createDevice = require('./devices/addDevice');
 const userComment = require('./posts/userComment')
 const savePosts = require("./posts/savePost");
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use("/profile", userRegistration);
 app.use("/user-login", userLogin);
 app.use("/forgotPassword",forgotpwEmailvalidation);
 app.use("/createPost",communityPost);
+app.use("/addDevice",createDevice);
 app.use("/getPost",communityPost);
 app.use("/savePost",savePosts)
 app.use("/removePost",savePosts)

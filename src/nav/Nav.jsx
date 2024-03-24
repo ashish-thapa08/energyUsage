@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { BsPersonFillAdd, BsPersonFill, BsArrowLeftCircle } from 'react-icons/bs';
+import { BsPersonFillAdd, BsPersonFill, BsArrowLeftCircle, BsBoxes } from 'react-icons/bs';
 import Path from '../routes/Path';
 
 export default function Nav() {
@@ -54,6 +54,14 @@ export default function Nav() {
                         </span>
                       </NavLink>
                     </li> 
+                    <li className="hover:bg-gray-700 flex items-start w-full">
+                      <NavLink to='/user/devices' activeClassName="bg-gray-700" className="block pt-2 pl-4 pb-2">
+                        <span>
+                          <BsBoxes className="inline-block align-middle mr-2" size="1.5em"/>
+                          Devices
+                        </span>
+                      </NavLink>
+                    </li>
                     <li className="hover:bg-gray-700 flex items-start w-full">
                       <NavLink to='/' onClick={Logout} activeClassName="bg-gray-700" className="block pt-2 pl-4 pb-2">
                         <span>
