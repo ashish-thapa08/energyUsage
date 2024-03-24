@@ -58,6 +58,21 @@ export const Posts = async (data) => {
     // Handle the absence of localStorage
   }
 };
+export const Devices = async (data) => {
+  if (typeof localStorage !== 'undefined') {
+    let user = localStorage.getItem('userData');
+    try {
+      console.log( user);
+      const response = await Axios.post(url + `addDevice/${user}`, data, { withCredentials: true });
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  } else {
+    console.error('localStorage is not available in this environment');
+    // Handle the absence of localStorage
+  }
+};
 export const Getposts = async(data)=>{
   try {
     const response = await Axios.get(url + "getPost", data, { withCredentials: true });
